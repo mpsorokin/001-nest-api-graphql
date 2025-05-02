@@ -1,0 +1,2 @@
+prisma db push => to publish prisma schema to DB
+prisma studio  => open prisma server on url :5555
