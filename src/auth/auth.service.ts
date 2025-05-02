@@ -36,8 +36,8 @@ export class AuthService {
     this.COOKIE_DOMAIN = configService.getOrThrow<string>('COOKIE_DOMAIN');
   }
 
-  async register(res: Response, dto: RegisterInput): Promise<any> {
-    const { name, email, password } = dto;
+  async register(res: Response, input: RegisterInput): Promise<any> {
+    const { name, email, password } = input;
 
     const existUser = await this.prismaService.user.findUnique({
       where: { email },
@@ -54,8 +54,8 @@ export class AuthService {
     return this.auth(res, user.id);
   }
 
-  async login(res: Response, dto: LoginInput) {
-    const { email, password } = dto;
+  async login(res: Response, input: LoginInput) {
+    const { email, password } = input;
 
     const user = await this.prismaService.user.findUnique({
       where: { email },
@@ -146,7 +146,8 @@ export class AuthService {
       domain: this.COOKIE_DOMAIN,
       expires,
       secure: !isDev(this.configService),
-      sameSite: isDev(this.configService) ? 'none' : 'lax',
+      //sameSite: isDev(this.configService) ? 'none' : 'lax',
+      sameSite: 'lax',
     });
   }
 }
