@@ -3,3 +3,6 @@ prisma studio  => open prisma server on url :5555
 
 
 import { User } from '../../../generated/prisma';
+
+
+node concat_code.js src, prisma --output code.txt
