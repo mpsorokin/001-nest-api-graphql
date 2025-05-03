@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { UserModel } from './models/user.model';
 import { Authorization } from '../auth/decorators/authorization.decorator';
 import { Authorized } from '../auth/guards/authorized.guard';
-import { User } from '../../generated/prisma';
+import { User, UserRole } from '../../generated/prisma';
 
 @Resolver()
 export class UserResolver {
@@ -15,8 +15,9 @@ export class UserResolver {
     return user;
   }
 
+  @Authorization(UserRole.ADMIN)
   @Query(() => [UserModel])
-  getUsers() {
-    return this.userService.findAll();
+  async getUsers() {
+    return await this.userService.findAll();
   }
 }
