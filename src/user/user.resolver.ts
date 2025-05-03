@@ -16,8 +16,8 @@ export class UserResolver {
   }
 
   @Authorization(UserRole.ADMIN)
-  @Query(() => [UserModel])
-  async getUsers() {
+  @Query(() => [UserModel], { name: 'getAllUsers' })
+  async getAll() {
     return await this.userService.findAll();
   }
 }

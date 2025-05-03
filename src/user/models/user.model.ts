@@ -5,21 +5,31 @@ registerEnumType(UserRole, {
   name: 'UserRole',
 });
 
-@ObjectType()
+@ObjectType({
+  description: 'User Model',
+})
 export class UserModel implements User {
   @Field(() => ID)
   id: string;
 
-  @Field(() => String)
+  @Field(() => String, {
+    description: 'User Name',
+  })
   name: string;
 
-  @Field(() => String)
+  @Field(() => String, {
+    description: 'User Email',
+  })
   email: string;
 
-  @Field(() => String)
+  @Field(() => String, {
+    description: 'User Password',
+  })
   password: string;
 
-  @Field(() => UserRole)
+  @Field(() => UserRole, {
+    description: 'User Role',
+  })
   role: UserRole;
 
   @Field(() => Date)
