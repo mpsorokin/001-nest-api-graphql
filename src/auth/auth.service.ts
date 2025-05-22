@@ -100,7 +100,7 @@ export class AuthService {
   }
 
   logout(res: Response) {
-    this.setCookie(res, 'refreshToken', new Date(0));
+    this.setCookie(res, '', new Date(0)); // Clear the cookie value
     return true;
   }
 
